@@ -1,8 +1,23 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { GetStaticProps } from "next";
 
-export default function Home() {
+import prisma from "../lib/prisma";
+
+export const getStaticProps: GetStaticProps = async () => {
+  const links = await prisma.link.findMany({
+    include: {
+      user: {
+        select: { email: true },
+      },
+    },
+  });
+  return { props: { links } };
+};
+
+export default function Home({ links }) {
+  console.log(links, "links");
   return (
     <div className={styles.container}>
       <Head>
@@ -36,8 +51,8 @@ export default function Home() {
             href="https://github.com/vercel/next.js/tree/master/examples"
             className={styles.card}
           >
-            <h2>Examples &rarr;</h2>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
+            <h2>Examples &rarr;</h2>
           </a>
 
           <a
