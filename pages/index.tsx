@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { GetStaticProps } from "next";
+import Link from "../models/Link";
 
 import prisma from "../lib/prisma";
 
@@ -10,15 +11,19 @@ export const getStaticProps: GetStaticProps = async () => {
     where: { published: true },
     include: {
       user: {
-        select: { email: true },
+        select: { email: true, username: true },
       },
     },
   });
   return { props: { links } };
 };
 
-export default function Home({ links }) {
-  console.log(links, "links");
+export interface HomeProps {
+  links: Link[];
+}
+
+const Home = ({ links }) => {
+  console.log(links);
   return (
     <div className={styles.container}>
       <Head>
@@ -38,10 +43,9 @@ export default function Home({ links }) {
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+          {links.map((link) => {
+            return <div key={link.id}>{link.userId}</div>;
+          })}
 
           <a href="https://nextjs.org/learn" className={styles.card}>
             <h2>Learn &rarr;</h2>
@@ -69,4 +73,6 @@ export default function Home({ links }) {
       </main>
     </div>
   );
-}
+};
+
+export default Home;
