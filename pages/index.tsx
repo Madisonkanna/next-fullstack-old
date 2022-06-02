@@ -10,7 +10,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const links = await prisma.link.findMany({
     where: { published: true },
     include: {
-      user: {
+      author: {
         select: { email: true, username: true },
       },
     },
