@@ -50,7 +50,6 @@ model User {
   email String @unique 
   name String?
   image         String?
-  username String @unique
   links Link[]
   accounts Account[]
   sessions Session[]
