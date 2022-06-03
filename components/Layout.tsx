@@ -4,15 +4,17 @@ import { Router, useRouter } from "next/router";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  const onLogin = router.route === "/login";
+  const onLoginPage = router.route === "/login";
   return (
     <Box>
       <Box
-        marginLeft={!onLogin && { sm: "0", md: "0", lg: "250px", xl: "250xp" }}
+        marginLeft={
+          !onLoginPage && { sm: "0", md: "0", lg: "250px", xl: "250xp" }
+        }
       >
         {children}
       </Box>
-      {!onLogin && (
+      {!onLoginPage && (
         <Box
           bottom={{ sm: "0", md: "0" }}
           width={{ lg: "250px", xl: "250px" }}
