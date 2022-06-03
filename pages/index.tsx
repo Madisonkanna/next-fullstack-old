@@ -11,7 +11,7 @@ export const getStaticProps: GetStaticProps = async () => {
     where: { published: true },
     include: {
       author: {
-        select: { email: true, username: true },
+        select: { email: true },
       },
     },
   });
