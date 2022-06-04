@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <Box>
       <Box
         marginLeft={
-          !onLoginPage && { sm: "0", md: "0", lg: "250px", xl: "250xp" }
+          !onLoginPage && { sm: "0", md: "0", lg: "250px", xl: "250px" }
         }
       >
         {children}
