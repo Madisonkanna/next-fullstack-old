@@ -4,8 +4,6 @@ import { Box } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
-type CallbackFunctionOrSomething = (pathname: string) => boolean;
-
 const Login: FC = () => {
   const { data: session } = useSession();
   const router = useRouter();
