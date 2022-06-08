@@ -1,5 +1,11 @@
 module.exports = {
-  extends: ["next/core-web-vitals", "airbnb", "airbnb/hooks", "prettier"],
+  extends: [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb/hooks",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+  ],
   plugins: ["react", "@typescript-eslint", "prettier"],
   env: {
     browser: true,
@@ -26,8 +32,11 @@ module.exports = {
       {
         ts: "never",
         tsx: "never",
+        js: "never",
+        jsx: "never",
       },
     ],
+
     "consistent-return": "off",
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
